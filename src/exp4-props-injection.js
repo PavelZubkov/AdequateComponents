@@ -18,10 +18,14 @@ function Dialog(props) {
   );
 }
 export default () => (<>
-    <Dialog />
     <Dialog
-      button_cancel={{ children: 'Pls click me' }}
-      body={{ children: 'Where are you?' }}
+      title={{ as: 'p' }}
+      button_cancel={null}
+      button_ok={(...props) => <button type="button" {...props}><h1>ops</h1></button>}
     />
-    <Dialog button_ok={{ children: 'Dont click me' }} />
+    {/*<Dialog*/}
+    {/*  button_cancel={{ children: 'Pls click me' }}*/}
+    {/*  body={{ children: 'Where are you?' }}*/}
+    {/*/>*/}
+    {/*<Dialog button_ok={{ children: 'Dont click me' }} />*/}
 </>);

@@ -1,20 +1,28 @@
 import React from "react";
 
+export const nodeType = {
+  Empty: 'Empty',
+  Text: 'Text',
+  Fragment: 'Fragment',
+  DOMElement: 'DOMElement',
+  ComponentElement: 'ComponentElement',
+}
+
 export function kindOf(node) {
   if(node === null || node === void 0 || typeof node === 'boolean') {
-    return 'Empty';
+    return nodeType.Empty;
   }
   if(typeof node === 'string' || typeof node === 'number') {
-    return 'Text';
+    return nodeType.Text;
   }
   if(Array.isArray(node)) {
-    return 'Fragment';
+    return nodeType.Fragment;
   }
   const { type } = node;
   if(typeof type === 'string') {
-    return 'DOMElement';
+    return nodeType.Fragment;
   }
-  return 'ComponentElement';
+  return nodeType.ComponentElement;
 }
 
 export function defaultTraverse(path, type) {
@@ -61,20 +69,19 @@ export default function traverse(node, visitor, trace = []) {
     visitor,
   };
   if(node === null || node === void 0 || typeof node === 'boolean') {
-    console.log('empty value');
-    return Empty(path); // eslint-disable-line new-cap
+    return Empty(path);
   }
   if(typeof node === 'string' || typeof node === 'number') {
-    return Text(path); // eslint-disable-line new-cap
+    return Text(path);
   }
   if(Array.isArray(node)) {
-    return Fragment(path); // eslint-disable-line new-cap
+    return Fragment(path);
   }
   const { type } = node;
   if(typeof type === 'string') {
-    return DOMElement(path); // eslint-disable-line new-cap
+    return DOMElement(path);
   }
-  const name = type.displayName || type.name || 'unknonw';
+  const name = type.displayName || type.name || 'unknown';
   if (visitor[name]) {
     const updatedNode = {
       ...path.node,
@@ -82,5 +89,5 @@ export default function traverse(node, visitor, trace = []) {
     }
     path.node = updatedNode;
   }
-  return ComponentElement(path); // eslint-disable-line new-cap //
+  return ComponentElement(path);
 }

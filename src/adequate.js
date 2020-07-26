@@ -1,4 +1,5 @@
-import React from "react";
+import React, { isValidElement } from "react";
+import { kindOf, nodeType } from './traverse';
 
 export const useAdequateComponent = (Component, globalProps) => {
   const prefixName = (Component.displayName || Component.name).toLowerCase();
@@ -8,20 +9,32 @@ export const useAdequateComponent = (Component, globalProps) => {
     
     return function ProxyComponent(props) {
       ProxyComponent.displayName = displayName;
-      const { as: component, className = '', ...rest } = props;
-      const cn = [className, displayName].filter(Boolean).join(' ');
+      const { as, className = '', ...rest } = props;
+  
+      let injectedProps = globalProps[suffixName];
+      if (injectedProps === null) {
+        return null;
+      }
+      if (!injectedProps) {
+        injectedProps = {};
+      }
       
-      const injectedProps = globalProps[suffixName] || {};
+      const cn = [className, displayName, injectedProps.className || ''].filter(Boolean).join(' ');
+      injectedProps.className = cn; // TODO className replace or extend?
+      
+      const component = typeof injectedProps === 'function' // TODO not work
+        ? injectedProps
+        : injectedProps.as || as;
+      delete injectedProps.as;
       
       if (typeof component === 'string') {
         return React.createElement(component, {
-          className: cn,
           ...rest,
           ...injectedProps,
         });
       }
+      // TODO check class/functional component
       return React.cloneElement(component(rest), {
-        className: cn,
         ...rest,
         ...injectedProps,
       });
