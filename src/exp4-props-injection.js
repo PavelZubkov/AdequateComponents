@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import { useAdequateComponent } from "./adequate";
 import { Card, Text, Button } from "./components";
 
@@ -17,15 +17,22 @@ function Dialog(props) {
     </dialog.root>
   );
 }
-export default () => (<>
-    <Dialog
-      title={{ as: 'p' }}
-      button_cancel={null}
-      button_ok={(...props) => <button type="button" {...props}><h1>ops</h1></button>}
-    />
-    {/*<Dialog*/}
-    {/*  button_cancel={{ children: 'Pls click me' }}*/}
-    {/*  body={{ children: 'Where are you?' }}*/}
-    {/*/>*/}
-    {/*<Dialog button_ok={{ children: 'Dont click me' }} />*/}
-</>);
+export default () => {
+  console.log('render');
+  const [count, setCount] = useState(0);
+  return (
+    <>
+      <Dialog
+        title={{ children: 'COUNTER' }}
+        button_ok={{ onClick: () => setCount(count + 1), children: '+' }}
+        button_cancel={{ onClick: () => setCount(count - 1), children: '-' }}
+        body={{ children: `VALUE: ${count}` }}
+      />
+      {/*<Dialog*/}
+      {/*  button_cancel={{ children: 'Pls click me' }}*/}
+      {/*  body={{ children: 'Where are you?' }}*/}
+      {/*/>*/}
+      {/*<Dialog button_ok={{ children: 'Dont click me' }} />*/}
+    </>
+  );
+}
