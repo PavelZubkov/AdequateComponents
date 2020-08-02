@@ -65,6 +65,15 @@ Text.Title = function Title(props) {
   );
 };
 
+Text.Accent = function Accent(props) {
+  const accent = $(Accent, props);
+  return (
+    <accent.root as="strong">
+      {props.children}
+    </accent.root>
+  );
+}
+
 const Icon = {};
 
 Icon.Cross = function Cross(props) {

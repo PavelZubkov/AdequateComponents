@@ -91,13 +91,53 @@ function Dialog(props) {
 //   );
 // }
 
+// export default () => {
+//   return (
+//     <>
+//       <Dialog>{dialog => (
+//         <dialog.header $after>
+//           <dialog.button_close as={Button}>X</dialog.button_close>
+//         </dialog.header>
+//       )}</Dialog>
+//     </>
+//   );
+// }
+
+// export default () => {
+//   return (
+//     <>
+//       <Dialog>{dialog => (
+//         <dialog.header $remove />
+//       )}</Dialog>
+//     </>
+//   );
+// }
+
+// children dialog.body обернется в dialog.message
+// получится:
+/*
+  <dialog.body>
+    <dialog.message>{dialog.body.children}</dialog.message>
+  </dialog.body>
+ */
+// export default () => {
+//   return (
+//     <>
+//       <Dialog>{dialog => (
+//         <dialog.body $wrap>
+//           <dialog.message as={Text.Accent} />
+//         </dialog.body>
+//       )}</Dialog>
+//     </>
+//   );
+// }
+
+// удалится хедер, вместо него будут его дети
 export default () => {
   return (
     <>
       <Dialog>{dialog => (
-        <dialog.header $after>
-          <dialog.button_close as={Button}>X</dialog.button_close>
-        </dialog.header>
+        <dialog.header $unwrap />
       )}</Dialog>
     </>
   );

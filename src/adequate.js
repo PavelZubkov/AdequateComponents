@@ -68,7 +68,6 @@ export const useAdequateComponent = (Component, globalProps) => {
           // а component(rest) вызовится, когда реконсилер запустит этот компонент
           
           if (extNode && extNode.type.displayName === displayName) {
-            debugger;
             if (extNode.props.$children) {
               return React.cloneElement(component(rest), {
                 ...rest,
@@ -121,6 +120,21 @@ export const useAdequateComponent = (Component, globalProps) => {
                   {extNode.props.children}
                 </>
               );
+            }
+            if (extNode.props.$remove) {
+              return null;
+            }
+            if (extNode.props.$wrap) {
+              return React.cloneElement(component(rest), {
+                ...rest,
+                ...injectedProps,
+                children: React.cloneElement(extNode.props.children, {
+                  children: rest.children || injectedProps.children,
+                }),
+              });
+            }
+            if (extNode.props.$unwrap) {
+              return rest.children || injectedProps.children;
             }
           }
           
