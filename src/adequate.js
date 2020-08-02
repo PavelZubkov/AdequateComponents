@@ -69,7 +69,59 @@ export const useAdequateComponent = (Component, globalProps) => {
           
           if (extNode && extNode.type.displayName === displayName) {
             debugger;
-            return React.cloneElement(extNode, injectedProps);
+            if (extNode.props.$children) {
+              return React.cloneElement(component(rest), {
+                ...rest,
+                ...injectedProps,
+                children: extNode.props.children,
+              });
+            }
+            if (extNode.props.$append) {
+              return React.cloneElement(component(rest), {
+                ...rest,
+                ...injectedProps,
+                children: (
+                  <>
+                    {rest.children || injectedProps.children}
+                    {extNode.props.children}
+                  </>
+                )
+              })
+            }
+            if (extNode.props.$prepend) {
+              return React.cloneElement(component(rest), {
+                ...rest,
+                ...injectedProps,
+                children: (
+                  <>
+                    {extNode.props.children}
+                    {rest.children || injectedProps.children}
+                  </>
+                )
+              })
+            }
+            if (extNode.props.$before) {
+              return (
+                <>
+                  {extNode.props.children}
+                  {React.cloneElement(component(rest), {
+                    ...rest,
+                    ...injectedProps,
+                  })}
+                </>
+              );
+            }
+            if (extNode.props.$after) {
+              return (
+                <>
+                  {React.cloneElement(component(rest), {
+                    ...rest,
+                    ...injectedProps,
+                  })}
+                  {extNode.props.children}
+                </>
+              );
+            }
           }
           
           return React.cloneElement(component(rest), {

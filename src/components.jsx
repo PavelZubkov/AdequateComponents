@@ -65,5 +65,12 @@ Text.Title = function Title(props) {
   );
 };
 
+const Icon = {};
 
-export { Card, Text, Button };
+Icon.Cross = function Cross(props) {
+  const cross = $(Cross, props);
+  return <cross.root as="span">X</cross.root>
+}
+
+
+export { Card, Text, Button, Icon };
