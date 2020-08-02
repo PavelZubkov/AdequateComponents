@@ -1,3 +1,4 @@
+/* WORK */
 import React, { useState } from "react";
 import { useAdequateComponent } from "./adequate";
 import { Card, Text, Button } from "./components";
@@ -17,6 +18,7 @@ function Dialog(props) {
     </dialog.root>
   );
 }
+
 export default () => {
   console.log('render');
   const [count, setCount] = useState(0);
@@ -28,11 +30,11 @@ export default () => {
         button_cancel={{ onClick: () => setCount(count - 1), children: '-' }}
         body={{ children: `VALUE: ${count}` }}
       />
-      {/*<Dialog*/}
-      {/*  button_cancel={{ children: 'Pls click me' }}*/}
-      {/*  body={{ children: 'Where are you?' }}*/}
-      {/*/>*/}
-      {/*<Dialog button_ok={{ children: 'Dont click me' }} />*/}
+      <Dialog
+        button_cancel={{ children: 'Pls click me' }}
+        body={{ children: 'Where are you?' }}
+      />
+      <Dialog button_ok={{ children: 'Dont click me' }} />
     </>
   );
 }

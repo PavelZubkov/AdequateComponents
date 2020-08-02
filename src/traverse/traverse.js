@@ -68,6 +68,7 @@ export default function traverse(node, visitor, trace = []) {
     },
     visitor,
   };
+  // debugger;
   if(node === null || node === void 0 || typeof node === 'boolean') {
     return Empty(path);
   }

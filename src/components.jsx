@@ -1,60 +1,69 @@
 import React from 'react';
-import { useAdequateComponent } from "./adequate";
+import { useAdequateComponent, useAdequateComponent as $ } from './adequate';
 
 function Card(props) {
+  const card = $(Card, props);
   return (
-    <div className="card">
-      {props.children}
-    </div>
+    <card.root as="div">
+      {/*{props.children}*/}
+    </card.root>
   );
 };
 
-Card.Header = (props) => {
+Card.Header = function Header(props) {
+  const header = $(Headers, props);
   return (
-    <header className="card_header">
-      {props.children}
-    </header>
+    <header.root as="header">
+      {/*{props.children}*/}
+    </header.root>
   );
 };
 
-Card.Body = (props) => {
+Card.Body = function Body(props) {
+  const body = $(Body, props);
   return (
-    <main className="card_main">
+    <body.root as="main">
       {props.children}
-    </main>
+    </body.root>
   );
 };
 
-Card.Footer = (props) => {
+Card.Footer = function Footer(props) {
+  const footer = $(Footer, props);
   return (
-    <footer className="card_footer">
+    <footer.root as="footer">
       {props.children}
-    </footer>
+    </footer.root>
   );
 };
 
-const Button = (props) => {
+function Button(props) {
+  const button = $(Button, props);
+  
   return (
-    <button
-      className="button"
-      type="button"
-      onClick={props.onClick || (() => {})}
-    >
+    <button.root as="button" type="button">
       {props.children}
-    </button>
+    </button.root>
   );
 };
 
-const Text = (props) => {
+function Text(props) {
+  const text = $(Text, props);
   return (
-    <p className="text">{props.children}</p>
+    <text.root as="p">
+      {props.children}
+    </text.root>
   );
 }
 
-Text.Title = (props) => {
+Text.Title = function Title(props) {
+  const title = $(Title, props);
   return (
-    <h1 className="title">{props.children}</h1>
+    <title.root as="h1">
+      {props.children}
+    </title.root>
   );
 };
+
 
 export { Card, Text, Button };

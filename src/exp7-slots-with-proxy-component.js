@@ -1,11 +1,11 @@
-import React, { Fragment } from "react";
-import { Card, Text, Button } from "./components";
-import traverse from './traverse/traverse';
+/* WORK */
+import React, { useState } from "react";
 import { useAdequateComponent } from "./adequate";
+import { Card, Text, Button } from "./components";
 
 function Dialog(props) {
   const dialog = useAdequateComponent(Dialog, props);
-  const node = (
+  return (
     <dialog.root as={Card}>
       <dialog.header as={Card.Header}>
         <dialog.title as={Text.Title}>Welcome</dialog.title>
@@ -17,23 +17,14 @@ function Dialog(props) {
       </dialog.footer>
     </dialog.root>
   );
-  return node;
 }
 
-const AlertButton = (props) => (
-  <button onClick={() => alert('newer ok')}>
-    {props.children} dont click
-  </button>
-);
-
-const node = Dialog({}); //
-const EnterButton = () => traverse(node, {
-  button_cancel: AlertButton,
-});
-
-export default () => <>
-    <EnterButton />
-  </>;
-
-
-
+export default () => {
+  return (
+    <>
+      <Dialog>{dialog => (
+        <dialog.title>Go out</dialog.title>
+      )}</Dialog>
+    </>
+  );
+}
