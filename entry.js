@@ -9,9 +9,10 @@ import ReactDOM from 'react-dom';
 // import App from './src/exp7-slots-with-proxy-component';
 // import App from './src/exp8-id-generation';
 // import App from './src/expA-jsx-alternative';
+import App from './src/expB-view-tree-to-react'
 
-// ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 
-import App, { View } from './src/exp9-view-component';
-const app = View.render(App);
-ReactDOM.render(app, document.getElementById('root'));
+// import App, { View } from './src/exp9-view-component';
+// const app = View.render(App);
+// ReactDOM.render(app, document.getElementById('root'));

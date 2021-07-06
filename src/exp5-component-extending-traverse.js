@@ -17,6 +17,11 @@ function Dialog(props) {
     </dialog.root>
   );
 }
+const alt = `
+  dialog 
+    as Card
+    
+`
 
 function DialogBadPermissions(props) {
   const dialog = $(DialogBadPermissions, props, Dialog);

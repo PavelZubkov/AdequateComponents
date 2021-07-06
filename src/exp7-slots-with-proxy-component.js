@@ -19,6 +19,90 @@ function Dialog(props) {
   );
 }
 
+class Dialog {
+  
+  Dialog() {
+    return (
+      <div class="Card Dialog">
+        {}
+      </div>
+    )
+  }
+
+  children() {
+  }
+}
+
+/*
+  <dialog as={Card}>
+    <header as={Card.Header}>
+      <title as={Text.Title}>Welcome</title>
+    </header>
+    <body as={Card.Body}>How are you?</body>
+    <footer as={Card.Footer}>
+      <button_cancel as={Button}>Cancel</button_cancel>
+      <button_ok as={Button}>Ok</button_ok>
+    </footer>
+  </dialog>
+  
+  {
+    __name: 'dialog',
+    as: Card,
+    children: [
+      {
+        __name: 'header'.
+        as: Card.Header,
+        children: [
+          {
+            __name: 'title',
+            children: 'Welcome',
+          }
+        ],
+      },
+      {
+        __name: 'body',
+        as: Card.Body,
+        children: 'How are you?',
+      },
+      {
+        __name: 'footer',
+        as: Card.Footer,
+        children: [
+          {
+            __name: 'button__ok',
+            children: {
+              __name: 'ok',
+              as: Button,
+              children: 'ok',
+            }
+          },
+          {
+            __name: 'button__cancel',
+            children: {
+              __name: 'cancel',
+              as: Button,
+              children: 'cancel',
+            }
+          },
+        ],
+      },
+    ]
+  }
+
+  {
+    dialog: {
+      header: {
+        title: {
+          $as: Text.Title,
+          $children: "Welcome",
+        },
+      },
+      body: {},
+      footer: {},
+    }
+  }
+*/
+
 // Как будут вести пропсы по дефолту и т.п.
 /*
   мы селектим элемент относительно которого, что-то делаем

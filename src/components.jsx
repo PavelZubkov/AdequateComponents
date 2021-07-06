@@ -57,11 +57,12 @@ function Text(props) {
 }
 
 Text.Title = function Title(props) {
-  const title = $(Title, props);
+  const text = $(Title, props);
   return (
-    <title.root as="h1">
+    // TODO
+    <text.title as="h1">
       {props.children}
-    </title.root>
+    </text.title>
   );
 };
 
